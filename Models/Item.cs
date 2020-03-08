@@ -3,7 +3,7 @@
 public class Item
 {
    
-    [Name("id")]
+    [Name("Codigo")]
     public long Id { get; set; }
     [Name("nome")]
     public string Nome { get; set; }
