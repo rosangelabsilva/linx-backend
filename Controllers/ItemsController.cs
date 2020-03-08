@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using linx_backend.Models;
 using System.IO;
-using CsvHelper;
+//using CsvHelper;
 using System.Globalization;
 
 namespace linx_backend.Controllers
@@ -105,6 +105,7 @@ namespace linx_backend.Controllers
             return item;
         }
 
+        // Post: api/Items/upload
         [HttpPost("upload")]
         public async Task<ActionResult> uploadFile(IFormFile file)
         {
@@ -113,30 +114,17 @@ namespace linx_backend.Controllers
                 return RedirectToAction("");
             }
 
+            var filePath = Path.GetTempFileName();
 
-            //using (var reader = new StreamReader("path\\to\\file.csv"))
-            //using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-            //{
-            //    var records = csv.GetRecords<Foo>();
-            //}
-
-
-            using (var memoryStream = new MemoryStream())
+            using (var stream = System.IO.File.Create(filePath))
             {
-                await file.CopyToAsync(memoryStream).ConfigureAwait(false);
+                await file.CopyToAsync(stream);
 
-                memoryStream.Seek(0, SeekOrigin.Begin);
-                using (var csv = new CsvReader(memoryStream, CultureInfo.InvariantCulture))
-                {
-                    csv.Configuration.HasHeaderRecord = false;
-
-                }
-
-
-
+                
             }
+            
 
-            return null;
+            return Ok();
 
         }
 

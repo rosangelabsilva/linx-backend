@@ -8236,7 +8236,7 @@
       "outputPath": "/Users/alessandro.santos/Projects/linx-backend/linx-backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/alessandro.santos/.nuget/NuGet/NuGet.Config"
+        "/Users/alessandro.santos/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
