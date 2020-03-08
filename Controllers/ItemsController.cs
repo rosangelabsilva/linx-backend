@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using linx_backend.Models;
 using System.IO;
-//using CsvHelper;
 using System.Globalization;
+using CsvHelper;
+//using CsvHelper;
+
 
 namespace linx_backend.Controllers
 {
@@ -119,13 +121,21 @@ namespace linx_backend.Controllers
             using (var stream = System.IO.File.Create(filePath))
             {
                 await file.CopyToAsync(stream);
-
-                
             }
-            
+
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var records = csv.GetRecords<Item>();
+                foreach (var item in records)
+                {
+                    _context.Items.Add(item);
+                }
+            }
+
+            await _context.SaveChangesAsync();
 
             return Ok();
-
         }
 
         private bool ItemExists(long id)

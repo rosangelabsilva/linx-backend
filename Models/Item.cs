@@ -1,18 +1,12 @@
-﻿public class Item
+﻿using CsvHelper.Configuration.Attributes;
+
+public class Item
 {
-    public Item()
-    {
-    }
-
-    public Item(long Codigo, string Nome, long Valor)
-    {
-        this.Codigo = Codigo;
-        this.Nome = Nome;
-        this.Valor = Valor;
-    }
-
+   
+    [Name("id")]
     public long Id { get; set; }
-    public long Codigo { get; set; }
+    [Name("nome")]
     public string Nome { get; set; }
+    [Name("valor")]
     public long Valor { get; set; }
 }
