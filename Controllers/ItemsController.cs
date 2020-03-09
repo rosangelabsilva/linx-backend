@@ -9,7 +9,6 @@ using linx_backend.Models;
 using System.IO;
 using System.Globalization;
 using CsvHelper;
-//using CsvHelper;
 
 
 namespace linx_backend.Controllers
@@ -113,7 +112,7 @@ namespace linx_backend.Controllers
         {
             if (file == null || file.Length == 0)
             {
-                return RedirectToAction("");
+                return BadRequest("Arquivo invalido");
             }
 
             var filePath = Path.GetTempFileName();

@@ -5,8 +5,8 @@ public class Item
    
     [Name("Codigo")]
     public long Id { get; set; }
-    [Name("nome")]
+    [Name("Nome")]
     public string Nome { get; set; }
-    [Name("valor")]
+    [Name("Valor")]
     public long Valor { get; set; }
 }
